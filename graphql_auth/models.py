@@ -28,6 +28,10 @@ class UserStatus(models.Model):
     A helper model that handles user account stuff.
     """
 
+    class Meta:
+        verbose_name_plural = "User Status"
+
+        
     user = models.OneToOneField(
         django_settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="status"
     )
@@ -36,7 +40,7 @@ class UserStatus(models.Model):
     secondary_email = models.EmailField(blank=True, null=True)
 
     def __str__(self):
-        return "%s - status" % (self.user)
+        return self.user
 
     def send(self, subject, template, context, recipient_list=None):
         _subject = render_to_string(subject, context).replace("\n", " ").strip()
