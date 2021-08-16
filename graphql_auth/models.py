@@ -40,7 +40,7 @@ class UserStatus(models.Model):
     secondary_email = models.EmailField(blank=True, null=True)
 
     def __str__(self):
-        return self.user
+        return "%s" % self.user
 
     def send(self, subject, template, context, recipient_list=None):
         _subject = render_to_string(subject, context).replace("\n", " ").strip()
